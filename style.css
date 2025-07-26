@@ -9,6 +9,7 @@
 }
 html{
     font-size: 62.5%;
+    scroll-behavior: smooth;
 }
 body{
     height: 100vh;
@@ -32,7 +33,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100%;
+    z-index: 100;
 }
 .logo{
     font-size: 3rem;
@@ -57,37 +58,6 @@ nav a.active{
     color: aquamarine;
     border-bottom: 3px solid aquamarine;
 }
-
-@media(max-width:995px){
-    nav{
-        position: absolute;
-        display: none;
-        top: 0;
-        right: 0;
-        width: 40%;
-        border-left: 3px solid aquamarine;
-        border-bottom: 3px solid aquamarine;
-        border-bottom-left-radius: 2rem;
-        padding: 1rem solid;
-        background-color: #161616;
-        border-top: 0.1rem solid rgba(0,0,0,0.1);
-    }
-    nav.active{
-        display: block;
-    }
-    nav a{
-        display: block;
-        font-size: 2rem;
-        margin: 3rem 0;
-    }
-    nav a:hover,
-    nav a.active{
-        padding: 1rem;
-        border-radius: 0.5rem;
-        border-bottom: 0.5rem;
-    }
-}
-
 section{
     min-height: 100vh;
     padding: 5rem 9% 5rem;
@@ -119,13 +89,15 @@ span{
     position: relative;
     width: 25vw;
     border-radius:50% ;
-    box-shadow: 0 0 25px solid aquamarine;
+    box-shadow: 0 0 25px aquamarine;
     cursor: pointer;
     transition: 0.2s linear;
 }
 .home-img img:hover{
-    font-size: 1.8rem;
-    font-weight: 500;
+    /* font-size: 1.8rem;
+    font-weight: 500; */
+    transform: scale(1.05);
+    box-shadow: 0 0 40px aquamarine;
 }
 .social-icons a{
     display: inline-flex;
@@ -142,7 +114,7 @@ span{
 }
 .social-icons a:hover{
     color: black;
-    transform: scale(1.3)translateY(-5px);
+    transform: scale(1.3) translateY(-5px);
     background-color: aquamarine;
     box-shadow: 0 0 25px aquamarine;
 }
@@ -165,53 +137,73 @@ span{
     color: black;
     box-shadow: 0 0 25px aquamarine;
 }
-.typing-text{
-    font-size: 34px;
-    font-weight: 600;
-    min-width: 280px;
-}
-.typing-text span{
-    position: relative;
-}
-.typing-text span::before{
-    content: "software developer";
-    color: aquamarine;
-    animation: words 20s infinite;
-}
-.typing-text span::after{
-    content: "";
-    background-color: black;
-    position: absolute;
-    width: calc(100%+8px);
-    height: 100%;
-    border-left: 3px solid black;
-    right: -8px;
-    animation: cursor 0.6s infinite;
-}
+ .typing-text {
+     font-size: 34px;
+     font-weight: 600;
+     min-width: 280px;
+ }
 
-@keyframes cursor{
-    to{
-        border-left: 3px solid aquamarine;
-    }
-}
+ .typing-text span {
+     position: relative;
+     display: inline-block;
+ }
 
-@keyframes words{
-    0%,20%{
-        content: "Web Developer";
-    }
-    21%,40%{
-        content: "Software Developer";
-    }
-    41%,60%{
-        content: "Web Designer";
-    }
-    61%,80%{
-        content: "Youtuber";
-    }
-    81%,100%{
-        content: "Script Writer";
-    }
-}
+ .typing-text span::before {
+     content: "Web Developer";
+     color: aquamarine;
+     animation: words 10s infinite;
+ }
+
+ .typing-text span::after {
+     content: "";
+     position: absolute;
+     top: 0;
+     right: -5px;
+     width: 2px;
+     height: 100%;
+     background-color: white;
+     animation: cursor 0.8s infinite;
+ }
+
+ @keyframes cursor {
+
+     0%,
+     100% {
+         opacity: 1;
+     }
+
+     50% {
+         opacity: 0;
+     }
+ }
+
+ @keyframes words {
+
+     0%,
+     20% {
+         content: "Web Developer";
+     }
+
+     21%,
+     40% {
+         content: "Software Developer";
+     }
+
+     41%,
+     60% {
+         content: "Web Designer";
+     }
+
+     61%,
+     80% {
+         content: "Youtuber";
+     }
+
+     81%,
+     100% {
+         content: "Script Writer";
+     }
+ }
 
 @media(max-width:1000px){
     .home{
@@ -226,11 +218,56 @@ span{
     .home .home-content h3{
         font-size: 2.5rem;
     }
-    .home-content h1{
+    .home .home-content h1{
         font-size: 5rem;
     }
     .home-img img{
         width: 70vw;
         margin-top: 4rem;
+    }
+}
+.menu-toggle{
+    display: none;
+}
+
+/* MOBILE NAV BAR DROPDOWN OPTION */
+@media (max-width: 995px) {
+    nav {
+        position: absolute;
+        top: 100%;
+        right: 9%;
+        width: 60%;
+        flex-direction: column;
+        background-color: #161616;
+        border: 2px solid aquamarine;
+        border-radius: 1rem;
+        padding: 2rem;
+        z-index: 99;
+
+        /* hide nav by default */
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-20px);
+        transition: all 0.3s ease;
+    }
+
+    nav.active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    nav a {
+        display: block;
+        font-size: 2rem;
+        margin: 1.5rem 0;
+        text-align: right;
+    }
+
+    .menu-toggle {
+        display: block;
+        font-size: 3rem;
+        color: aquamarine;
+        cursor: pointer;
     }
 }
