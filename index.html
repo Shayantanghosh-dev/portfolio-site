@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio</title>
     <!-- linking css -->
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="portfolio.css" />
     <!-- linking icons -->
-    <!-- Font Awesome CDN -->
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- linking fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
@@ -24,6 +29,9 @@
         <a href="#">Experience</a>
         <a href="#">Contact</a>
       </nav>
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
     </header>
     <section class="home">
       <div class="home-img">
@@ -53,4 +61,13 @@
       </div>
     </section>
   </body>
+  <!-- javascript -->
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const nav = document.querySelector("header nav");
+
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("active");
+    });
+  </script>
 </html>
